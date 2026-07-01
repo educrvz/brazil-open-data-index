@@ -1,9 +1,10 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const csvPath = path.join(root, "data", "sources.csv");
 const outPath = path.join(root, "src", "sources.json");
+const publicCsvPath = path.join(root, "public", "data", "sources.csv");
 
 function parseCsv(text) {
   const rows = [];
@@ -73,6 +74,13 @@ function inferAccessType(row) {
   return "Open";
 }
 
+function extractFirstUrl(value) {
+  const match = value.match(/https?:\/\/[^\s;)]+/i);
+  if (!match) return "";
+
+  return match[0].replace(/[.,]+$/, "");
+}
+
 function normalize(row, index) {
   const name = row.Name.trim();
   return {
@@ -82,8 +90,10 @@ function normalize(row, index) {
     level: row.Level.trim(),
     location: row["State/Municipality"].trim(),
     domain: row.Domain.trim(),
-    url: row.URL.trim(),
-    docs: row["API/Docs"].trim(),
+    url: extractFirstUrl(row.URL),
+    rawUrl: row.URL.trim(),
+    docs: extractFirstUrl(row["API/Docs"]),
+    rawDocs: row["API/Docs"].trim(),
     accessMethod: row["Access Method"].trim(),
     accessType: inferAccessType(row),
     formats: row.Formats.split(",").map((item) => item.trim()).filter(Boolean),
@@ -100,6 +110,7 @@ function normalize(row, index) {
 }
 
 const rows = parseCsv(await readFile(csvPath, "utf8"));
+const csvText = await readFile(csvPath, "utf8");
 const sources = rows.map(normalize);
 const summary = {
   sourceCount: sources.length,
@@ -110,4 +121,6 @@ const summary = {
 };
 
 await writeFile(outPath, `${JSON.stringify({ summary, sources }, null, 2)}\n`);
+await mkdir(path.dirname(publicCsvPath), { recursive: true });
+await writeFile(publicCsvPath, csvText);
 console.log(`Built ${sources.length} sources -> ${path.relative(root, outPath)}`);
