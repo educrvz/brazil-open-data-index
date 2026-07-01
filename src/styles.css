@@ -441,7 +441,7 @@ h1 {
 
 .source-facts div {
   display: grid;
-  grid-template-columns: 94px minmax(0, 1fr);
+  grid-template-columns: minmax(126px, 34%) minmax(0, 1fr);
   gap: 10px;
   border-top: 1px solid var(--line);
   padding-top: 8px;
@@ -449,9 +449,10 @@ h1 {
 
 dt {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 900;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 dd {
@@ -459,6 +460,8 @@ dd {
   color: #343029;
   font-size: 0.9rem;
   line-height: 1.25;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .source-card__footer {

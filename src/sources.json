@@ -295,7 +295,7 @@
       "description": "Federal voluntary transfers, convênios, contratos de repasse to states/municipalities/NGOs: values, status, executors.",
       "license": "CC BY 4.0",
       "authRequired": "None",
-      "limitations": "Legacy Siconv vs modern contracts need manual entity joins. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Legacy Siconv vs modern contracts need manual entity joins. Manual browser check 2026-07-01: did not load.",
       "relevance": "SME/fintech",
       "lastVerified": "2026-06-25"
     },
@@ -410,7 +410,7 @@
       "description": "Despesas, pessoal, emendas, áreas setoriais do Executivo.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Most lack programmatic API; export format varies by module. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Most lack programmatic API; export format varies by module. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
       "lastVerified": "2026-06-25"
     },
@@ -613,7 +613,7 @@
       "description": "Despesas, receitas, remuneração, transferências, contratos, licitações, obras. Linked dados.ma.gov.br.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Most lack programmatic API; export format varies by module. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Most lack programmatic API; export format varies by module. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
       "lastVerified": "2026-06-25"
     },
@@ -1136,7 +1136,7 @@
       "description": "Receitas, despesas, orçamento, obras, GeoSampa, servidores. Pair with dados.prefeitura.sp.gov.br.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
       "lastVerified": "2026-06-25"
     },
@@ -1166,7 +1166,7 @@
       "description": "Receita por fonte, folha, contratos por favorecido (CGM Rio).",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: did not load.",
       "relevance": "Local-SMB",
       "lastVerified": "2026-06-25"
     },
@@ -1196,7 +1196,7 @@
       "description": "RH, despesas, receitas, módulos setoriais (PCR).",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
       "lastVerified": "2026-06-25"
     },
@@ -1316,7 +1316,7 @@
       "description": "Compras, receitas, despesas, pessoal, materiais, bens, PPA/LDO/LOA, contracts. PRIORITY lead-mapping city.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Link check 2026-07-01: automated checker timed out; manual browser verification recommended before production use.",
+      "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
       "lastVerified": "2026-06-25"
     },
@@ -1433,7 +1433,7 @@
       "description": "National registry of public bids, contracts, price records (atas), procurement plans across all government levels (Lei 14.133).",
       "license": "CC0 / open",
       "authRequired": "None",
-      "limitations": "Municipal adoption still ramping; older contracts in Comprasnet. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Municipal adoption still ramping; older contracts in Comprasnet. Manual browser check 2026-07-01: did not load.",
       "relevance": "SME/fintech",
       "lastVerified": "2026-06-25"
     },
@@ -1654,7 +1654,7 @@
       "description": "MG state & municipal GDP, sectoral value added, trade indicators, input-output matrices; R&D/patent/publication indexes.",
       "license": "Open / CC BY 4.0",
       "authRequired": "None",
-      "limitations": "Some stats rely on slow academic disclosure. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Some stats rely on slow academic disclosure. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
       "lastVerified": "2026-06-25"
     },
@@ -2034,7 +2034,7 @@
       "description": "Junta comercial services & process consultation in Amapá.",
       "license": "Open (partial)",
       "authRequired": "None for basic consult",
-      "limitations": "Service-oriented; partner detail often paid; not bulk-friendly. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Service-oriented; partner detail often paid; not bulk-friendly. Manual browser check 2026-07-01: works.",
       "relevance": "SME/fintech",
       "lastVerified": "2026-06-25"
     },
@@ -2142,7 +2142,7 @@
       "description": "Official exports/imports: FOB value, net kg, quantity, by product (NCM/SH4), partner, state, municipality of declaring firm, transport, customs unit.",
       "license": "CC BY-ND 3.0",
       "authRequired": "None",
-      "limitations": "Municipality = firm's fiscal domicile, not production origin; bulk CSVs too large for spreadsheets. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Municipality = firm's fiscal domicile, not production origin; bulk CSVs too large for spreadsheets. Manual browser check 2026-07-01: works.",
       "relevance": "Agro/Land",
       "lastVerified": "2026-06-25"
     },
@@ -2336,7 +2336,7 @@
       "description": "Property registry certificates (matrícula), prior search, e-protocol across participating registry offices nationwide.",
       "license": "Paid per act; not open data",
       "authRequired": "Registration + payment",
-      "limitations": "Fees apply; coverage depends on cartório participation. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Fees apply; coverage depends on cartório participation. Manual browser check 2026-07-01: did not load.",
       "relevance": "Agro/Land",
       "lastVerified": "2026-06-25"
     },
@@ -2418,7 +2418,7 @@
       "description": "Benchmark daily price indicators (cattle, soy, corn, coffee, sugar) widely used in contracts.",
       "license": "Free historical; attribution",
       "authRequired": "None",
-      "limitations": "Not government; attribution required. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Not government; attribution required. Manual browser check 2026-07-01: works.",
       "relevance": "Agro/Land",
       "lastVerified": "2026-06-25"
     },
@@ -2725,7 +2725,7 @@
       "description": "Full municipal GIS: cadastral lots, zoning, IPTU value zones, street network, transport, geology, environment layers.",
       "license": "CC BY 4.0",
       "authRequired": "None",
-      "limitations": "- Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "- Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
       "lastVerified": "2026-06-25"
     },
@@ -2968,7 +2968,7 @@
       "description": "Registered medicines/cosmetics/food, drug prices (CMED), adverse events, establishment authorizations, imports.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "- Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "- Manual browser check 2026-07-01: works.",
       "relevance": "Healthcare",
       "lastVerified": "2026-06-25"
     },
@@ -3161,7 +3161,7 @@
       "description": "Search of STF acórdãos, decisions, súmulas, full text; Corte Aberta panels on distribution/decisions/repercussão geral.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Research-oriented; not bulk structured download. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Research-oriented; not bulk structured download. Manual browser check 2026-07-01: works.",
       "relevance": "General/Infra",
       "lastVerified": "2026-06-25"
     },
@@ -3522,7 +3522,7 @@
       "description": "Port throughput & waterway statistics, anuário panels.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Web/panel fragile; automation may need scraping. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Web/panel fragile; automation may need scraping. Manual browser check 2026-07-01: did not load.",
       "relevance": "SME/fintech",
       "lastVerified": "2026-06-25"
     },
@@ -3820,7 +3820,7 @@
       "description": "State CKAN: finance, procurement, convênios; pair with SEI & IDE Bahia.",
       "license": "Open",
       "authRequired": "None",
-      "limitations": "Coverage/maturity varies by publishing org. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
+      "limitations": "Coverage/maturity varies by publishing org. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
       "lastVerified": "2026-06-25"
     },
