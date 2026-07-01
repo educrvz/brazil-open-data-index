@@ -3,6 +3,7 @@
 A public, contribution-friendly index of Brazilian public datasets, APIs, portals, bulk files, and civic data sources.
 
 The site supports English and Portuguese through the in-page language switcher.
+Visitors from Brazil default to Portuguese based on Vercel geolocation. Manual language choices are saved in the browser and override the geolocation default.
 
 The site is built from `data/sources.csv`, which currently contains 144 sources verified on 2026-06-25.
 

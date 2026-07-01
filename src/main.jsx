@@ -14,6 +14,8 @@ import catalog from "./sources.json";
 import "./styles.css";
 
 const accessOrder = ["Open API", "Open", "Free key", "Restricted", "Paid"];
+const GEO_LANGUAGE_COOKIE = "bodi_default_language";
+const USER_LANGUAGE_COOKIE = "bodi_language";
 
 const copy = {
   en: {
@@ -78,7 +80,7 @@ const copy = {
     creditPrefix: "Inspirado por",
     creditName: "Open Data Index — Daily Proto",
     browse: "Explorar fontes",
-    start: "Comecar por dados.gov.br",
+    start: "Começar por dados.gov.br",
     stats: {
       summary: "Resumo do catálogo",
       sources: "fontes",
@@ -128,6 +130,28 @@ function unique(values) {
 
 function includes(value, query) {
   return value.toLowerCase().includes(query);
+}
+
+function readCookie(name) {
+  return document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith(`${name}=`))
+    ?.split("=")[1];
+}
+
+function getInitialLanguage() {
+  const storedLanguage = readCookie(USER_LANGUAGE_COOKIE);
+  if (storedLanguage === "en" || storedLanguage === "pt") return storedLanguage;
+
+  const geoLanguage = readCookie(GEO_LANGUAGE_COOKIE);
+  if (geoLanguage === "en" || geoLanguage === "pt") return geoLanguage;
+
+  return navigator.language?.toLowerCase().startsWith("pt") ? "pt" : "en";
+}
+
+function saveUserLanguage(language) {
+  document.cookie = `${USER_LANGUAGE_COOKIE}=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
 }
 
 function SourceCard({ source, t }) {
@@ -183,7 +207,7 @@ function SourceCard({ source, t }) {
 
 function App() {
   const { sources, summary } = catalog;
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(getInitialLanguage);
   const [query, setQuery] = useState("");
   const [domain, setDomain] = useState("All");
   const [level, setLevel] = useState("All");
@@ -237,6 +261,11 @@ function App() {
     setRelevance("All");
   };
 
+  const chooseLanguage = (nextLanguage) => {
+    saveUserLanguage(nextLanguage);
+    setLanguage(nextLanguage);
+  };
+
   return (
     <main>
       <section className="hero">
@@ -247,7 +276,7 @@ function App() {
                 <button
                   key={item}
                   className={language === item ? "is-active" : ""}
-                  onClick={() => setLanguage(item)}
+                  onClick={() => chooseLanguage(item)}
                   type="button"
                 >
                   {item.toUpperCase()}
