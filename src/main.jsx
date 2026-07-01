@@ -128,7 +128,7 @@ function App() {
       <section className="hero">
         <div className="hero__inner">
           <nav className="topbar" aria-label="Project links">
-            <a href="https://github.com/" target="_blank" rel="noreferrer">
+            <a href="https://github.com/educrvz/brazil-open-data-index" target="_blank" rel="noreferrer">
               <Github size={17} /> GitHub
             </a>
             <a href="/data/sources.csv" download>

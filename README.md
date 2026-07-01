@@ -4,6 +4,8 @@ A public, contribution-friendly index of Brazilian public datasets, APIs, portal
 
 The site is built from `data/sources.csv`, which currently contains 144 sources verified on 2026-06-25.
 
+Live site: https://brazil-open-data-index.vercel.app
+
 ## Run locally
 
 ```bash
