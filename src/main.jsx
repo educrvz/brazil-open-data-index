@@ -385,19 +385,19 @@ function App() {
                 .
               </p>
               <div className="access-strip" aria-label={t.filters.access}>
-                <span>
+                <span className="legend-pill legend-pill--open">
                   <strong>{t.accessTypes.Open}</strong>
                   {language === "pt" ? "Acesso público" : "Public access"}
                 </span>
-                <span>
+                <span className="legend-pill legend-pill--open-api">
                   <strong>{t.accessTypes["Open API"]}</strong>
                   API
                 </span>
-                <span>
+                <span className="legend-pill legend-pill--free-key">
                   <strong>{t.accessTypes["Free key"]}</strong>
                   {language === "pt" ? "Cadastro rápido" : "Quick signup"}
                 </span>
-                <span>
+                <span className="legend-pill legend-pill--restricted">
                   <strong>{t.accessTypes.Restricted}</strong>
                   {language === "pt" ? "Fluxo restrito" : "Restricted flow"}
                 </span>
