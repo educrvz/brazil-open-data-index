@@ -2,13 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
-  Database,
   Download,
-  Filter,
   Github,
-  Globe2,
-  Search,
-  ShieldCheck,
 } from "lucide-react";
 import catalog from "./sources.json";
 import "./styles.css";
@@ -16,6 +11,17 @@ import "./styles.css";
 const accessOrder = ["Open API", "Open", "Free key", "Restricted", "Paid"];
 const GEO_LANGUAGE_COOKIE = "bodi_default_language";
 const USER_LANGUAGE_COOKIE = "bodi_language";
+const CATEGORY_ORDER = [
+  "Finance, budget & transparency",
+  "Statistics, economy & labor",
+  "Business, tax & trade",
+  "Land, agriculture & environment",
+  "Health, education & research",
+  "Security, justice & politics",
+  "Infrastructure, utilities & transport",
+  "Meta-catalogs & civic infrastructure",
+  "Other / cross-domain",
+];
 
 const copy = {
   en: {
@@ -124,12 +130,91 @@ const copy = {
   },
 };
 
-function unique(values) {
-  return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+function compactUrl(url) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
-function includes(value, query) {
-  return value.toLowerCase().includes(query);
+function getCategory(source) {
+  const domain = source.domain.toLowerCase();
+  const text = `${source.name} ${source.domain} ${source.description}`.toLowerCase();
+
+  if (
+    domain.includes("finance") ||
+    domain.includes("budget") ||
+    domain.includes("transparency") ||
+    domain.includes("procurement") ||
+    domain.includes("taxation")
+  ) {
+    return "Finance, budget & transparency";
+  }
+
+  if (
+    domain.includes("macroeconomy") ||
+    domain.includes("statistics") ||
+    domain.includes("labor") ||
+    domain.includes("banking") ||
+    domain.includes("demographics")
+  ) {
+    return "Statistics, economy & labor";
+  }
+
+  if (
+    domain.includes("business") ||
+    domain.includes("company") ||
+    domain.includes("registry") ||
+    domain.includes("trade") ||
+    text.includes("cnpj") ||
+    text.includes("comex")
+  ) {
+    return "Business, tax & trade";
+  }
+
+  if (
+    domain.includes("land") ||
+    domain.includes("geospatial") ||
+    domain.includes("environment") ||
+    domain.includes("agriculture") ||
+    domain.includes("weather")
+  ) {
+    return "Land, agriculture & environment";
+  }
+
+  if (
+    domain.includes("health") ||
+    domain.includes("education") ||
+    domain.includes("social") ||
+    domain.includes("research")
+  ) {
+    return "Health, education & research";
+  }
+
+  if (
+    domain.includes("security") ||
+    domain.includes("justice") ||
+    domain.includes("politics") ||
+    domain.includes("law") ||
+    domain.includes("legislature")
+  ) {
+    return "Security, justice & politics";
+  }
+
+  if (
+    domain.includes("infrastructure") ||
+    domain.includes("utilities") ||
+    domain.includes("telecom") ||
+    domain.includes("transport") ||
+    domain.includes("energy") ||
+    domain.includes("tourism") ||
+    domain.includes("culture")
+  ) {
+    return "Infrastructure, utilities & transport";
+  }
+
+  if (domain.includes("meta-catalog") || domain.includes("open data") || domain.includes("multi-domain")) {
+    return "Meta-catalogs & civic infrastructure";
+  }
+
+  return "Other / cross-domain";
 }
 
 function readCookie(name) {
@@ -159,37 +244,21 @@ function SourceCard({ source, t }) {
     <article className="source-card">
       <div className="source-card__top">
         <div>
-          <div className="source-card__meta">
-            <span>{source.level}</span>
-            {source.location && source.location !== "-" ? <span>{source.location}</span> : null}
-            <span>{source.domain}</span>
-          </div>
           <h2>{source.name}</h2>
         </div>
-        <span className={`access access--${source.accessType.toLowerCase().replaceAll(" ", "-")}`}>
-          {t.accessTypes[source.accessType] ?? source.accessType}
-        </span>
+        <a className="card-arrow" href={source.url} target="_blank" rel="noreferrer" aria-label={source.name}>
+          <ArrowUpRight size={15} />
+        </a>
       </div>
 
       <p>{source.description}</p>
 
-      <dl className="source-facts">
-        <div>
-          <dt>{t.card.access}</dt>
-          <dd>{source.accessMethod || t.card.notSpecified}</dd>
-        </div>
-        <div>
-          <dt>{t.card.formats}</dt>
-          <dd>{source.formats.slice(0, 4).join(", ") || t.card.notSpecified}</dd>
-        </div>
-        <div>
-          <dt>{t.card.granularity}</dt>
-          <dd>{source.granularity || t.card.varies}</dd>
-        </div>
-      </dl>
+      <div className="endpoint">{compactUrl(source.url)}</div>
 
       <div className="source-card__footer">
-        <span>{t.card.verified} {source.lastVerified}</span>
+        <span className={`access access--${source.accessType.toLowerCase().replaceAll(" ", "-")}`}>
+          {t.accessTypes[source.accessType] ?? source.accessType}
+        </span>
         <div className="source-card__links">
           {source.docs ? (
             <a href={source.docs} target="_blank" rel="noreferrer">
@@ -206,13 +275,9 @@ function SourceCard({ source, t }) {
 }
 
 function App() {
-  const { sources, summary } = catalog;
+  const { sources } = catalog;
   const [language, setLanguage] = useState(getInitialLanguage);
-  const [query, setQuery] = useState("");
-  const [domain, setDomain] = useState("All");
-  const [level, setLevel] = useState("All");
-  const [access, setAccess] = useState("All");
-  const [relevance, setRelevance] = useState("All");
+  const [category, setCategory] = useState("All");
   const t = copy[language];
 
   useEffect(() => {
@@ -220,46 +285,22 @@ function App() {
     document.title = t.title;
   }, [language, t.title]);
 
-  const domains = useMemo(() => unique(sources.map((source) => source.domain)), [sources]);
-  const levels = useMemo(() => unique(sources.map((source) => source.level)), [sources]);
-  const relevanceOptions = useMemo(() => unique(sources.map((source) => source.relevance)), [sources]);
-  const accessTypes = useMemo(
-    () => accessOrder.filter((type) => sources.some((source) => source.accessType === type)),
+  const categories = useMemo(
+    () => [
+      { name: "All", count: sources.length },
+      ...CATEGORY_ORDER.map((name) => ({
+        name,
+        count: sources.filter((source) => getCategory(source) === name).length,
+      })).filter((item) => item.count > 0),
+    ],
     [sources],
   );
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
     return sources.filter((source) => {
-      const matchesQuery =
-        !q ||
-        [
-          source.name,
-          source.agency,
-          source.domain,
-          source.description,
-          source.location,
-          source.accessMethod,
-          source.relevance,
-        ].some((field) => includes(field || "", q));
-
-      return (
-        matchesQuery &&
-        (domain === "All" || source.domain === domain) &&
-        (level === "All" || source.level === level) &&
-        (access === "All" || source.accessType === access) &&
-        (relevance === "All" || source.relevance === relevance)
-      );
+      return category === "All" || getCategory(source) === category;
     });
-  }, [access, domain, level, query, relevance, sources]);
-
-  const clearFilters = () => {
-    setQuery("");
-    setDomain("All");
-    setLevel("All");
-    setAccess("All");
-    setRelevance("All");
-  };
+  }, [category, sources]);
 
   const chooseLanguage = (nextLanguage) => {
     saveUserLanguage(nextLanguage);
@@ -303,36 +344,23 @@ function App() {
                 </a>
                 .
               </p>
-              <div className="hero__actions">
-                <a className="button button--primary" href="#sources">
-                  {t.browse}
-                </a>
-                <a className="button" href="https://dados.gov.br/" target="_blank" rel="noreferrer">
-                  {t.start}
-                </a>
-              </div>
-            </div>
-
-            <div className="stats-panel" aria-label={t.stats.summary}>
-              <div>
-                <Database size={22} />
-                <strong>{summary.sourceCount}</strong>
-                <span>{t.stats.sources}</span>
-              </div>
-              <div>
-                <Globe2 size={22} />
-                <strong>{summary.domains.length}</strong>
-                <span>{t.stats.domains}</span>
-              </div>
-              <div>
-                <Filter size={22} />
-                <strong>{summary.levels.length}</strong>
-                <span>{t.stats.levels}</span>
-              </div>
-              <div>
-                <ShieldCheck size={22} />
-                <strong>{summary.lastVerified}</strong>
-                <span>{t.stats.lastVerified}</span>
+              <div className="access-strip" aria-label={t.filters.access}>
+                <span>
+                  <strong>{t.accessTypes.Open}</strong>
+                  {language === "pt" ? "Acesso público" : "Public access"}
+                </span>
+                <span>
+                  <strong>{t.accessTypes["Open API"]}</strong>
+                  API
+                </span>
+                <span>
+                  <strong>{t.accessTypes["Free key"]}</strong>
+                  {language === "pt" ? "Cadastro rápido" : "Quick signup"}
+                </span>
+                <span>
+                  <strong>{t.accessTypes.Restricted}</strong>
+                  {language === "pt" ? "Fluxo restrito" : "Restricted flow"}
+                </span>
               </div>
             </div>
           </div>
@@ -341,69 +369,31 @@ function App() {
 
       <section className="catalog" id="sources">
         <div className="catalog__inner">
-          <aside className="filters" aria-label={t.filters.label}>
-            <div className="searchbox">
-              <Search size={18} />
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder={t.filters.search}
-              />
+          <aside className="categories" aria-label={t.filters.domain}>
+            <h2>{language === "pt" ? "Categorias" : "Categories"}</h2>
+            <div className="category-list">
+              {categories.map((item, index) => (
+                <button
+                  key={item.name}
+                  className={category === item.name ? "is-active" : ""}
+                  onClick={() => setCategory(item.name)}
+                  type="button"
+                >
+                  <span className="category-dot" style={{ "--dot-index": index }} />
+                  <span>{item.name === "All" ? t.filters.all : item.name}</span>
+                  <strong>{item.count}</strong>
+                </button>
+              ))}
             </div>
-
-            <label>
-              {t.filters.domain}
-              <select value={domain} onChange={(event) => setDomain(event.target.value)}>
-                <option value="All">{t.filters.all}</option>
-                {domains.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              {t.filters.level}
-              <select value={level} onChange={(event) => setLevel(event.target.value)}>
-                <option value="All">{t.filters.all}</option>
-                {levels.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              {t.filters.access}
-              <select value={access} onChange={(event) => setAccess(event.target.value)}>
-                <option value="All">{t.filters.all}</option>
-                {accessTypes.map((item) => (
-                  <option key={item} value={item}>{t.accessTypes[item] ?? item}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              {t.filters.relevance}
-              <select value={relevance} onChange={(event) => setRelevance(event.target.value)}>
-                <option value="All">{t.filters.all}</option>
-                {relevanceOptions.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </label>
-
-            <button className="clear-button" onClick={clearFilters}>
-              {t.filters.clear}
-            </button>
           </aside>
 
           <div className="results">
             <div className="results__header">
               <div>
-                <span className="results__count">{filtered.length}</span>
-                <span> {t.results.of} {sources.length} {t.results.sources}</span>
+                <span className="category-heading-dot" />
+                <strong>{category === "All" ? t.filters.all : category}</strong>
               </div>
-              <p>{t.results.contributePrefix} <code>data/sources.csv</code> {t.results.contributeSuffix}</p>
+              <p>{filtered.length} {t.results.sources}</p>
             </div>
 
             <div className="source-grid">
