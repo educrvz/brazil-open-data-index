@@ -144,6 +144,13 @@ function App() {
                 A contribution-friendly index of public Brazilian data sources across government finance,
                 companies, health, education, land, security, infrastructure, and civic research.
               </p>
+              <p className="credit">
+                Inspired by{" "}
+                <a href="https://daily-proto.vercel.app/open-data" target="_blank" rel="noreferrer">
+                  Open Data Index — Daily Proto
+                </a>
+                .
+              </p>
               <div className="hero__actions">
                 <a className="button button--primary" href="#sources">
                   Browse sources

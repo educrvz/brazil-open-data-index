@@ -6,6 +6,8 @@ The site is built from `data/sources.csv`, which currently contains 144 sources 
 
 Live site: https://brazil-open-data-index.vercel.app
 
+Inspired by [Open Data Index — Daily Proto](https://daily-proto.vercel.app/open-data).
+
 ## Run locally
 
 ```bash
