@@ -64,6 +64,37 @@ select {
   padding: 24px 0 58px;
 }
 
+.language-toggle {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  background: rgba(255, 253, 246, 0.78);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.language-toggle button {
+  min-height: 40px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  padding: 0 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.language-toggle button:last-child {
+  border-right: 0;
+}
+
+.language-toggle button.is-active {
+  background: var(--ink);
+  color: #fffdf6;
+}
+
 .topbar a,
 .button,
 .clear-button {
