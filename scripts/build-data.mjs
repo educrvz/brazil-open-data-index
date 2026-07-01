@@ -102,7 +102,6 @@ function normalize(row, index) {
 const rows = parseCsv(await readFile(csvPath, "utf8"));
 const sources = rows.map(normalize);
 const summary = {
-  generatedAt: new Date().toISOString(),
   sourceCount: sources.length,
   lastVerified: sources.reduce((latest, item) => (item.lastVerified > latest ? item.lastVerified : latest), ""),
   domains: [...new Set(sources.map((item) => item.domain))].sort(),
