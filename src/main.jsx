@@ -240,32 +240,72 @@ function saveUserLanguage(language) {
 }
 
 function SourceCard({ source, t }) {
+  const openSource = () => {
+    window.open(source.url, "_blank", "noopener,noreferrer");
+  };
+
+  const openSourceFromKeyboard = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openSource();
+    }
+  };
+
+  const stopCardClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
-    <article className="source-card">
+    <article
+      className="source-card"
+      onClick={openSource}
+      onKeyDown={openSourceFromKeyboard}
+      role="link"
+      tabIndex={0}
+      aria-label={`${source.name} - ${t.card.source}`}
+    >
       <div className="source-card__top">
         <div>
+          <div className="source-card__meta">
+            <span>{source.level}</span>
+            {source.location && source.location !== "-" ? <span>{source.location}</span> : null}
+            <span>{source.domain}</span>
+          </div>
           <h2>{source.name}</h2>
         </div>
-        <a className="card-arrow" href={source.url} target="_blank" rel="noreferrer" aria-label={source.name}>
-          <ArrowUpRight size={15} />
-        </a>
+        <span className={`access access--${source.accessType.toLowerCase().replaceAll(" ", "-")}`}>
+          {t.accessTypes[source.accessType] ?? source.accessType}
+        </span>
       </div>
 
       <p>{source.description}</p>
 
       <div className="endpoint">{compactUrl(source.url)}</div>
 
+      <dl className="source-facts">
+        <div>
+          <dt>{t.card.access}</dt>
+          <dd>{source.accessMethod || t.card.notSpecified}</dd>
+        </div>
+        <div>
+          <dt>{t.card.formats}</dt>
+          <dd>{source.formats.slice(0, 4).join(", ") || t.card.notSpecified}</dd>
+        </div>
+        <div>
+          <dt>{t.card.granularity}</dt>
+          <dd>{source.granularity || t.card.varies}</dd>
+        </div>
+      </dl>
+
       <div className="source-card__footer">
-        <span className={`access access--${source.accessType.toLowerCase().replaceAll(" ", "-")}`}>
-          {t.accessTypes[source.accessType] ?? source.accessType}
-        </span>
+        <span>{t.card.verified} {source.lastVerified}</span>
         <div className="source-card__links">
           {source.docs ? (
-            <a href={source.docs} target="_blank" rel="noreferrer">
+            <a href={source.docs} target="_blank" rel="noreferrer" onClick={stopCardClick}>
               {t.card.docs} <ArrowUpRight size={14} />
             </a>
           ) : null}
-          <a href={source.url} target="_blank" rel="noreferrer">
+          <a href={source.url} target="_blank" rel="noreferrer" onClick={stopCardClick}>
             {t.card.source} <ArrowUpRight size={14} />
           </a>
         </div>
