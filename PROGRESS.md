@@ -3,6 +3,23 @@
 Dated log of every change, newest first. Each entry says what changed, why, which checks
 ran, whether it was deployed, and what is still open. Format: see `AGENTS.md`.
 
+## 2026-11-15 — GoatCounter analytics; NOTION_TOKEN documented (Edu + Claude Code)
+
+Added GoatCounter (cookieless, aggregate) to `index.html` with site code
+`brazil-open-data-index`, plus click events from `src/main.jsx`: `source/<slug>` and
+`docs/<slug>` (card links and card click), `download/sources-csv`, `language/en|pt`.
+Bilingual footer note says visits are counted anonymously, without cookies.
+Docs: GoatCounter in CONTEXT integrations and RUNBOOK monitoring; `NOTION_TOKEN` in the
+RUNBOOK secrets table (GitHub Actions secret for `notion-signal`).
+Checks: `./scripts/check.sh` passes; local preview in headless Chromium: count.js loads,
+`goatcounter.count` receives language, source and CSV events, no page errors (GoatCounter
+itself ignores localhost/headless, so real counts start on the live site).
+Deployed: yes, push to main → Vercel (this commit).
+Open (Edu): create the GoatCounter site `brazil-open-data-index` (counts are rejected until
+it exists); create the Notion integration "project-kit sync", connect it to the Projects
+database, and set `NOTION_TOKEN` here (and in dccrvz/project-kit) so Notion gets Last push /
+deploy automatically. Notion: done (maintenance log + Work Log task).
+
 ## 2026-11-15 — Link and card audit fixes (Edu + Claude Code)
 
 Audit of all 144 cards and 167 links on the live site (headless browser + HTTP checks).

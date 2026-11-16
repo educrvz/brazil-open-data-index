@@ -564,3 +564,10 @@ dd {
     flex-direction: column;
   }
 }
+
+.site-footer {
+  padding: 0 16px 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+}

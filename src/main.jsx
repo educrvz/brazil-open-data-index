@@ -757,6 +757,8 @@ const copy = {
     title: "Brazil Open Data Index",
     lede:
       "A contribution-friendly index of public Brazilian data sources across government finance, companies, health, education, land, security, infrastructure, and civic research.",
+    privacyNote:
+      "Anonymous visit counts with GoatCounter: no cookies, no personal data, no tracking across sites.",
     creditPrefix: "Inspired by",
     creditName: "Open Data Index — Daily Proto",
     browse: "Browse sources",
@@ -809,6 +811,8 @@ const copy = {
     title: "Índice Brasileiro de Dados Abertos",
     lede:
       "Um índice aberto para contribuições com fontes públicas de dados brasileiros sobre finanças públicas, empresas, saúde, educação, território, segurança, infraestrutura e pesquisa cívica.",
+    privacyNote:
+      "Contagem anônima de visitas com GoatCounter: sem cookies, sem dados pessoais, sem rastreamento entre sites.",
     creditPrefix: "Inspirado por",
     creditName: "Open Data Index — Daily Proto",
     browse: "Explorar fontes",
@@ -965,6 +969,19 @@ function saveUserLanguage(language) {
   document.cookie = `${USER_LANGUAGE_COOKIE}=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
 }
 
+// GoatCounter event (cookieless). No-op when the script is blocked or not loaded yet.
+function trackEvent(path, title) {
+  try {
+    window.goatcounter?.count?.({ path, title, event: true });
+  } catch {
+    // analytics must never break the page
+  }
+}
+
+function sourceSlug(source) {
+  return source.id.replace(/-\d+$/, "");
+}
+
 function categoryLabel(category, language, t) {
   if (category === "All") return t.filters.all;
   return language === "pt" ? CATEGORY_LABELS_PT[category] ?? translateFreeTextPt(category) : category;
@@ -996,6 +1013,7 @@ function sourceDisplay(source, language) {
 function SourceCard({ source, t, language }) {
   const display = sourceDisplay(source, language);
   const openSource = () => {
+    trackEvent(`source/${sourceSlug(source)}`, source.name);
     window.open(source.url, "_blank", "noopener,noreferrer");
   };
 
@@ -1056,11 +1074,27 @@ function SourceCard({ source, t, language }) {
         <span>{t.card.verified} {source.lastVerified}</span>
         <div className="source-card__links">
           {source.docs ? (
-            <a href={source.docs} target="_blank" rel="noreferrer" onClick={stopCardClick}>
+            <a
+              href={source.docs}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => {
+                stopCardClick(event);
+                trackEvent(`docs/${sourceSlug(source)}`, source.name);
+              }}
+            >
               {t.card.docs} <ArrowUpRight size={14} />
             </a>
           ) : null}
-          <a href={source.url} target="_blank" rel="noreferrer" onClick={stopCardClick}>
+          <a
+            href={source.url}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => {
+              stopCardClick(event);
+              trackEvent(`source/${sourceSlug(source)}`, source.name);
+            }}
+          >
             {t.card.source} <ArrowUpRight size={14} />
           </a>
         </div>
@@ -1100,6 +1134,7 @@ function App() {
   const chooseLanguage = (nextLanguage) => {
     saveUserLanguage(nextLanguage);
     setLanguage(nextLanguage);
+    trackEvent(`language/${nextLanguage}`, `Language: ${nextLanguage}`);
   };
 
   return (
@@ -1122,7 +1157,7 @@ function App() {
             <a href="https://github.com/educrvz/brazil-open-data-index" target="_blank" rel="noreferrer">
               <Github size={17} /> GitHub
             </a>
-            <a href="/data/sources.csv" download>
+            <a href="/data/sources.csv" download onClick={() => trackEvent("download/sources-csv", "CSV download")}>
               <Download size={17} /> CSV
             </a>
           </nav>
@@ -1203,6 +1238,9 @@ function App() {
           </div>
         </div>
       </section>
+      <footer className="site-footer">
+        <p>{t.privacyNote}</p>
+      </footer>
     </main>
   );
 }

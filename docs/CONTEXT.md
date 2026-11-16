@@ -48,6 +48,8 @@ public portfolio piece for DC Cruz. Anyone can propose a source by pull request.
 |---|---|---|---|
 | GitHub | Code, pull requests, CI | `educrvz/brazil-open-data-index` (public) | Edu's GitHub |
 | Vercel | Hosting + edge middleware | team `educrvzs-projects`, project `brazil-open-data-index` | Edu's Vercel |
+| GoatCounter | Cookieless page views + click events (Source/Docs links, CSV download, language) | site code `brazil-open-data-index` (https://brazil-open-data-index.goatcounter.com) | Edu's GoatCounter login |
+| Notion | Projects row synced by `notion-signal` (Last push / commit / deploy) | integration "project-kit sync", Projects database | `NOTION_TOKEN` repo Actions secret |
 
 ## Where everything is
 - Code: this repo (https://github.com/educrvz/brazil-open-data-index); local folder `~/Documents/03 Software & AI/Claude/Code/brazil-open-data-index`

@@ -52,16 +52,20 @@ Write what happened in `PROGRESS.md`.
 ## Logs and monitoring
 - Build and runtime logs: Vercel dashboard → project → Deployments / Logs.
 - CI: GitHub Actions `check` and `notion-signal`.
+- Traffic: GoatCounter https://brazil-open-data-index.goatcounter.com (cookieless, aggregate).
+  Page views count automatically; events are paths starting with `source/`, `docs/`,
+  `download/` and `language/` (see `trackEvent` in `src/main.jsx`). GoatCounter ignores
+  localhost and headless browsers, so test it on the live site in a normal browser.
 - Alerts: none.
 
 ## Secrets inventory
-None. The project has no secrets (`.env.example` is empty on purpose).
+The app has no secrets (`.env.example` is empty on purpose). CI has one.
 
-| Key (in .env.example) | What it is | Where it is set in production | Vault item |
+| Key | What it is | Where it is set in production | Vault item |
 |---|---|---|---|
-| — | — | — | — |
+| `NOTION_TOKEN` (GitHub Actions secret, not in `.env`) | Notion internal integration "project-kit sync" token; lets `notion-signal` write Last push / Last commit / Last deploy to the Projects row | Repo → Settings → Secrets → Actions (set with `gh secret set NOTION_TOKEN -R educrvz/brazil-open-data-index`) | Edu's Notion (integration page) |
 
-`NOTION_TOKEN` (repo Actions secret, optional) only feeds `notion-signal`; without it the job passes and does nothing.
+Without `NOTION_TOKEN` the `notion-signal` job passes but only prints "NOTION_TOKEN secret not set; Notion not updated".
 
 ## Common issues
 | Symptom | Likely cause | Fix |
