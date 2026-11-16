@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build:data": "node scripts/build-data.mjs",
+    "check:links": "node scripts/check-links.mjs",
     "dev": "npm run build:data && vite --host 0.0.0.0",
     "build": "npm run build:data && vite build",
     "preview": "vite preview --host 0.0.0.0"

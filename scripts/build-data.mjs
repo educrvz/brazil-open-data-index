@@ -3,7 +3,8 @@ import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const csvPath = path.join(root, "data", "sources.csv");
-const outPath = path.join(root, "src", "sources.json");
+const ptCsvPath = path.join(root, "data", "sources-pt.csv");
+const outPath =path.join(root, "src", "sources.json");
 const publicCsvPath = path.join(root, "public", "data", "sources.csv");
 
 function parseCsv(text) {
@@ -111,7 +112,34 @@ function normalize(row, index) {
 
 const rows = parseCsv(await readFile(csvPath, "utf8"));
 const csvText = await readFile(csvPath, "utf8");
-const sources = rows.map(normalize);
+
+// Optional hand-written Portuguese text, keyed by Name. Blank cells fall back to the
+// automatic translation in src/main.jsx.
+const ptRows = parseCsv(await readFile(ptCsvPath, "utf8"));
+const ptByName = new Map(ptRows.map((row) => [row.Name.trim(), row]));
+const names = new Set(rows.map((row) => row.Name.trim()));
+const orphans = [...ptByName.keys()].filter((name) => !names.has(name));
+if (orphans.length) {
+  throw new Error(`data/sources-pt.csv has names not in data/sources.csv: ${orphans.join("; ")}`);
+}
+
+const sources = rows.map((row, index) => {
+  const source = normalize(row, index);
+  const pt = ptByName.get(source.name);
+  if (pt) {
+    source.pt = {
+      description: (pt["What You Can Get"] ?? "").trim(),
+      granularity: (pt.Granularity ?? "").trim(),
+      accessMethod: (pt["Access Method"] ?? "").trim(),
+    };
+  }
+  return source;
+});
+
+const missingUrl = sources.filter((source) => !source.url).map((source) => source.name);
+if (missingUrl.length) {
+  throw new Error(`Sources without a valid URL: ${missingUrl.join("; ")}`);
+}
 const summary = {
   sourceCount: sources.length,
   lastVerified: sources.reduce((latest, item) => (item.lastVerified > latest ? item.lastVerified : latest), ""),

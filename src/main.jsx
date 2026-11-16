@@ -985,10 +985,11 @@ function sourceDisplay(source, language) {
   return {
     level: LEVEL_LABELS_PT[source.level] ?? translateFreeTextPt(source.level),
     domain: DOMAIN_LABELS_PT[source.domain] ?? translateFreeTextPt(source.domain),
-    description: translateFreeTextPt(source.description),
-    accessMethod: translateFreeTextPt(source.accessMethod),
+    // Hand-written Portuguese from data/sources-pt.csv wins over the phrase-by-phrase translator.
+    description: source.pt?.description || translateFreeTextPt(source.description),
+    accessMethod: source.pt?.accessMethod || translateFreeTextPt(source.accessMethod),
     formats: translateFreeTextPt(source.formats.join(", ")),
-    granularity: translateFreeTextPt(source.granularity),
+    granularity: source.pt?.granularity || translateFreeTextPt(source.granularity),
   };
 }
 
@@ -1154,6 +1155,10 @@ function App() {
                 <span className="legend-pill legend-pill--restricted">
                   <strong>{t.accessTypes.Restricted}</strong>
                   {language === "pt" ? "Fluxo restrito" : "Restricted flow"}
+                </span>
+                <span className="legend-pill legend-pill--paid">
+                  <strong>{t.accessTypes.Paid}</strong>
+                  {language === "pt" ? "Cobrança por consulta" : "Fee per request"}
                 </span>
               </div>
             </div>

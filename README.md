@@ -5,7 +5,7 @@ A public, contribution-friendly index of Brazilian public datasets, APIs, portal
 The site supports English and Portuguese through the in-page language switcher.
 Visitors from Brazil default to Portuguese based on Vercel geolocation. Manual language choices are saved in the browser and override the geolocation default.
 
-The site is built from `data/sources.csv`, which currently contains 144 sources verified on 2026-06-25.
+The site is built from `data/sources.csv`, which currently contains 144 sources. Links were last checked on 2026-11-15 (`npm run check:links`).
 
 Live site: https://brazil-open-data-index.vercel.app
 
@@ -20,10 +20,11 @@ npm run dev
 
 ## Update the catalog
 
-1. Edit `data/sources.csv`.
-2. Keep the existing columns.
-3. Run `npm run build:data`.
-4. Open a pull request with a short explanation and a source link.
+1. Edit `data/sources.csv` (English text). Put one real URL in `URL`; extra URLs or notes in `API/Docs` come after the first URL.
+2. Optional: add hand-written Portuguese for that source in `data/sources-pt.csv` (same `Name`). Blank cells fall back to automatic translation.
+3. Run `npm run build:data` (it fails if a source has no valid URL or a Portuguese row has no matching source).
+4. Run `npm run check:links` to see dead or moved links.
+5. Open a pull request with a short explanation and a source link.
 
 ## Deploy
 

@@ -198,7 +198,8 @@ h1 {
   background: var(--acid);
 }
 
-.legend-pill--restricted strong {
+.legend-pill--restricted strong,
+.legend-pill--paid strong {
   background: var(--ink);
   color: #fff;
 }

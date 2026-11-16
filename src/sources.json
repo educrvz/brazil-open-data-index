@@ -1,7 +1,7 @@
 {
   "summary": {
     "sourceCount": 144,
-    "lastVerified": "2026-06-25",
+    "lastVerified": "2026-11-15",
     "domains": [
       "Agribusiness price indicators",
       "Agriculture & livestock",
@@ -34,7 +34,7 @@
       "Gov finance & transparency",
       "Gov finance (states & municipalities)",
       "Gov finance / debt / costs",
-      "Health (fast mirror)",
+      "Health (community tooling)",
       "Health (modern API)",
       "Health (raw microdata)",
       "Health facilities registry",
@@ -131,7 +131,7 @@
       "authRequired": "Free token for API",
       "limitations": "Indexes metadata; data lives on agency portals. Coverage uneven by agency.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "base-dos-dados-bd-2",
@@ -159,7 +159,7 @@
       "authRequired": "Free Google Cloud project (1TB/mo free)",
       "limitations": "Mirror not primary; not all official tables present; >1TB/mo query incurs Google cost.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ipeadata-3",
@@ -187,7 +187,7 @@
       "authRequired": "None",
       "limitations": "Aggregates multiple primary sources; some series lag. Always cite original source for audits.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "portal-da-transparencia-federal-4",
@@ -214,7 +214,7 @@
       "authRequired": "Free email -> API token",
       "limitations": "API rate-limited; for large volumes use bulk CSV.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "siconfi-5",
@@ -242,7 +242,12 @@
       "authRequired": "None",
       "limitations": "Self-reported; gaps where entities don't submit; retroactive revisions common.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Relatórios contábeis e fiscais (RREO, RGF, DCA) + Matriz de Saldos Contábeis de todos os 5.570 municípios e estados: receitas, despesas, dívida, por ente/período.",
+        "granularity": "todos os estados, DF e municípios",
+        "accessMethod": ""
+      }
     },
     {
       "id": "tesouro-transparente-6",
@@ -270,7 +275,7 @@
       "authRequired": "None",
       "limitations": "Some panels aggregated; for rawer structured data use SICONFI.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "transferegov-transferencias-abertas-7",
@@ -292,12 +297,17 @@
       "granularity": "agreement / proponent / municipality / program",
       "coverage": "2008 -> present",
       "updateFrequency": "daily/continuous",
-      "description": "Federal voluntary transfers, convênios, contratos de repasse to states/municipalities/NGOs: values, status, executors.",
+      "description": "Federal voluntary transfers, agreements (convênios) and transfer contracts to states/municipalities/NGOs: values, status, executors.",
       "license": "CC BY 4.0",
       "authRequired": "None",
       "limitations": "Legacy Siconv vs modern contracts need manual entity joins. Manual browser check 2026-07-01: works.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Transferências voluntárias federais, convênios e contratos de repasse para estados, municípios e ONGs: valores, situação e executores.",
+        "granularity": "convênio / proponente / município / programa",
+        "accessMethod": ""
+      }
     },
     {
       "id": "siga-brasil-8",
@@ -325,7 +335,7 @@
       "authRequired": "None",
       "limitations": "Interface heavy; learning curve.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "portal-da-transparencia-acre-9",
@@ -349,12 +359,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receitas, despesas, convênios, contratos, servidores, repasses a municípios.",
+      "description": "Revenue, expenses, agreements (convênios), contracts, civil servants, transfers to municipalities.",
       "license": "open license stated in portal",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receitas, despesas, convênios, contratos, servidores, repasses a municípios.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-alagoas-10",
@@ -365,10 +380,10 @@
       "domain": "Gov finance & transparency",
       "url": "https://transparencia.al.gov.br/",
       "rawUrl": "https://transparencia.al.gov.br/",
-      "docs": "",
-      "rawDocs": "mostly no public API (scrape/export)",
-      "accessMethod": "web query + export",
-      "accessType": "Open",
+      "docs": "https://transparencia.al.gov.br/portal/api",
+      "rawDocs": "https://transparencia.al.gov.br/portal/api",
+      "accessMethod": "API/WebService + web query + export",
+      "accessType": "Open API",
       "formats": [
         "HTML",
         "CSV",
@@ -378,12 +393,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Orçamento, receitas, despesas, repasses, pessoal, licitações, patrimônio, convênios. Has API/WebService.",
+      "description": "Budget, revenue, expenses, transfers, personnel, procurement, assets, agreements (convênios). Has an API/WebService.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Orçamento, receitas, despesas, repasses, pessoal, licitações, patrimônio, convênios. Tem API/WebService.",
+        "granularity": "",
+        "accessMethod": "API/WebService + consulta web + exportação"
+      }
     },
     {
       "id": "portal-da-transparencia-amapa-11",
@@ -407,12 +427,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Despesas, pessoal, emendas, áreas setoriais do Executivo.",
+      "description": "Expenses, personnel, parliamentary amendments, Executive sector areas.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Despesas, pessoal, emendas, áreas setoriais do Executivo.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-amazonas-12",
@@ -436,12 +461,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Execução orçamentária/financeira, pagamentos por credor, pessoal. (2026 payroll inconsistency notice.)",
+      "description": "Budget and financial execution, payments by creditor, personnel. (2026 payroll inconsistency notice.)",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Execução orçamentária/financeira, pagamentos por credor, pessoal. (Aviso de inconsistência na folha em 2026.)",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-bahia-13",
@@ -465,12 +495,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Execução financeira, pagamentos, licitações, contratos, pessoal. Pair with dados.ba.gov.br.",
+      "description": "Financial execution, payments, procurement, contracts, personnel. Pair with dados.ba.gov.br.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Execução financeira, pagamentos, licitações, contratos, pessoal. Use junto com dados.ba.gov.br.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-ceara-14",
@@ -494,12 +529,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Programas, receita, despesa, servidores; cidadão chatbot.",
+      "description": "Programs, revenue, expenses, civil servants; citizen chatbot.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Programas, receita, despesa, servidores; chatbot para o cidadão.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-distrito-federal-15",
@@ -528,7 +568,7 @@
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "portal-da-transparencia-espirito-santo-16",
@@ -552,12 +592,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Gastos, receitas, pessoal, licitações, contratos, obras.",
+      "description": "Spending, revenue, personnel, procurement, contracts, public works.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Gastos, receitas, pessoal, licitações, contratos, obras.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-goias-17",
@@ -581,12 +626,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Convênios, repasses, folha, órgãos, benefícios, execução.",
+      "description": "Agreements (convênios), transfers, payroll, agencies, benefits, budget execution.",
       "license": "CC 4.0",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Convênios, repasses, folha, órgãos, benefícios, execução.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-maranhao-18",
@@ -610,12 +660,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Despesas, receitas, remuneração, transferências, contratos, licitações, obras. Linked dados.ma.gov.br.",
+      "description": "Expenses, revenue, pay, transfers, contracts, procurement, public works. Linked to dados.ma.gov.br.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Despesas, receitas, remuneração, transferências, contratos, licitações, obras. Ligado a dados.ma.gov.br.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-mato-grosso-19",
@@ -639,12 +694,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Execução orçamentária e financeira do estado.",
+      "description": "State budget and financial execution.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Execução orçamentária e financeira do estado.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-mato-grosso-do-sul-20",
@@ -668,12 +728,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Consultas por data/fornecedor/órgão: receitas, despesas.",
+      "description": "Queries by date/supplier/agency: revenue, expenses.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Consultas por data, fornecedor e órgão: receitas, despesas.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-minas-gerais-21",
@@ -697,12 +762,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Compras, contratos, convênios, repasses, pessoal (LAI).",
+      "description": "Purchases, contracts, agreements (convênios), transfers, personnel (LAI).",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Compras, contratos, convênios, repasses, pessoal (LAI).",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-para-22",
@@ -726,12 +796,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Planejamento, gestão fiscal, servidor, receita, despesa.",
+      "description": "Planning, fiscal management, civil servants, revenue, expenses.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Planejamento, gestão fiscal, servidores, receita, despesa.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-paraiba-23",
@@ -755,12 +830,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receitas, despesas, contratos, convênios, servidores (desde 2011).",
+      "description": "Revenue, expenses, contracts, agreements (convênios), civil servants (since 2011).",
       "license": "CC BY 4.0",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receitas, despesas, contratos, convênios, servidores (desde 2011).",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-parana-24",
@@ -784,12 +864,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Planejamento, execução, receitas, gastos, transferências a municípios, remuneração.",
+      "description": "Planning, execution, revenue, spending, transfers to municipalities, pay.",
       "license": "Open (Decreto 10.285/14)",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Planejamento, execução, receitas, gastos, transferências a municípios, remuneração.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-pernambuco-25",
@@ -813,12 +898,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "RH, licitações, contratos, receita, despesa. Linked state open-data portal.",
+      "description": "HR, procurement, contracts, revenue, expenses. Linked state open-data portal.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "RH, licitações, contratos, receita, despesa. Ligado ao portal estadual de dados abertos.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-piaui-26",
@@ -842,12 +932,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Servidores, despesas, receitas, licitações, contratos.",
+      "description": "Civil servants, expenses, revenue, procurement, contracts.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Servidores, despesas, receitas, licitações, contratos.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rio-de-janeiro-27",
@@ -871,12 +966,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Planejamento, orçamento, royalties do petróleo, receitas, despesas, servidores.",
+      "description": "Planning, budget, oil royalties, revenue, expenses, civil servants.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Planejamento, orçamento, royalties do petróleo, receitas, despesas, servidores.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rio-grande-do-norte-28",
@@ -900,12 +1000,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Orçamento, finanças, licitações, obras. New version at transparencia2.rn.gov.br.",
+      "description": "Budget, finances, procurement, public works. New version at transparencia2.rn.gov.br.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Orçamento, finanças, licitações, obras. Nova versão em transparencia2.rn.gov.br.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rio-grande-do-sul-29",
@@ -929,12 +1034,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Plataforma Pilas R$: receitas/despesas em tempo real + pessoal.",
+      "description": "Pilas R$ platform: real-time revenue/expenses + personnel.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Plataforma Pilas R$: receitas e despesas em tempo real + pessoal.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rondonia-30",
@@ -958,12 +1068,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receitas, despesas, fornecedores, pessoal, participação social.",
+      "description": "Revenue, expenses, suppliers, personnel, citizen participation.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receitas, despesas, fornecedores, pessoal, participação social.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-roraima-31",
@@ -987,12 +1102,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Remunerações, contratos, patrimônio.",
+      "description": "Pay, contracts, assets.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Remunerações, contratos, patrimônio.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-santa-catarina-32",
@@ -1016,12 +1136,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receitas, despesas, diárias, materiais/serviços em tempo real.",
+      "description": "Real-time revenue, expenses, travel allowances, materials/services.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receitas, despesas, diárias, materiais e serviços em tempo real.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-sergipe-33",
@@ -1045,12 +1170,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Execução financeira, receitas, despesas, licitações, contratos, RH.",
+      "description": "Financial execution, revenue, expenses, procurement, contracts, HR.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Execução financeira, receitas, despesas, licitações, contratos, RH.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-sao-paulo-34",
@@ -1074,12 +1204,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Compras, contratos, repasses, obras, pessoal, receitas, despesas.",
+      "description": "Purchases, contracts, transfers, public works, personnel, revenue, expenses.",
       "license": "Open (Decreto 63.463)",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Compras, contratos, repasses, obras, pessoal, receitas, despesas.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-tocantins-35",
@@ -1088,8 +1223,8 @@
       "level": "State",
       "location": "TO",
       "domain": "Gov finance & transparency",
-      "url": "https://portal.sefaz.to.gov.br/transparencia",
-      "rawUrl": "https://portal.sefaz.to.gov.br/transparencia",
+      "url": "https://transparencia.to.gov.br/PortalTransparencia/",
+      "rawUrl": "https://transparencia.to.gov.br/PortalTransparencia/",
       "docs": "",
       "rawDocs": "mostly no public API (scrape/export)",
       "accessMethod": "web query + export",
@@ -1103,12 +1238,17 @@
       "granularity": "department / transaction / employee",
       "coverage": "~2010s -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Execução financeira, servidores, convênios.",
+      "description": "Financial execution, civil servants, agreements (convênios).",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Most lack programmatic API; export format varies by module.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Execução financeira, servidores, convênios.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-sao-paulo-capital-36",
@@ -1133,12 +1273,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receitas, despesas, orçamento, obras, GeoSampa, servidores. Pair with dados.prefeitura.sp.gov.br.",
+      "description": "Revenue, expenses, budget, public works, GeoSampa, civil servants. Pair with dados.prefeitura.sp.gov.br.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receitas, despesas, orçamento, obras, GeoSampa, servidores. Use junto com dados.prefeitura.sp.gov.br.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rio-de-janeiro-contas-rio-37",
@@ -1163,12 +1308,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receita por fonte, folha, contratos por favorecido (CGM Rio).",
+      "description": "Revenue by source, payroll, contracts by payee (CGM Rio).",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receita por fonte, folha, contratos por favorecido (CGM Rio).",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-recife-38",
@@ -1177,8 +1327,8 @@
       "level": "Municipal",
       "location": "Recife / PE",
       "domain": "Gov finance & transparency",
-      "url": "https://portaltransparencia.recife.pe.gov.br/",
-      "rawUrl": "https://portaltransparencia.recife.pe.gov.br/",
+      "url": "https://transparencia.recife.pe.gov.br/",
+      "rawUrl": "https://transparencia.recife.pe.gov.br/",
       "docs": "",
       "rawDocs": "mostly no public API",
       "accessMethod": "web query + export",
@@ -1193,12 +1343,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "RH, despesas, receitas, módulos setoriais (PCR).",
+      "description": "HR, expenses, revenue, sector modules (PCR).",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "RH, despesas, receitas, módulos setoriais (PCR).",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-porto-alegre-39",
@@ -1223,12 +1378,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Receita, despesas tempo real, folha, ISS, ITBI.",
+      "description": "Revenue, real-time expenses, payroll, ISS, ITBI.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Receita, despesas em tempo real, folha, ISS, ITBI.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-salvador-40",
@@ -1253,12 +1413,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Gastos, receitas, execução por secretaria.",
+      "description": "Spending, revenue, execution by department.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Gastos, receitas, execução por secretaria.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-vitoria-41",
@@ -1283,12 +1448,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Despesas, receitas, contratos, salários, licitações. Open data via separate Dados Vitória API.",
+      "description": "Expenses, revenue, contracts, salaries, procurement. Open data via the separate Dados Vitória API.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Despesas, receitas, contratos, salários, licitações. Dados abertos pela API separada Dados Vitória.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-vitoria-da-conquista-42",
@@ -1313,12 +1483,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Compras, receitas, despesas, pessoal, materiais, bens, PPA/LDO/LOA, contracts. PRIORITY lead-mapping city.",
+      "description": "Purchases, revenue, expenses, personnel, materials, assets, PPA/LDO/LOA, contracts. PRIORITY lead-mapping city.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping. Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Compras, receitas, despesas, pessoal, materiais, bens, PPA/LDO/LOA, contratos. Cidade PRIORITÁRIA para mapeamento de leads.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-belem-43",
@@ -1343,12 +1518,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Convênios, licitações, receita, despesa, saúde, educação.",
+      "description": "Agreements (convênios), procurement, revenue, expenses, health, education.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Convênios, licitações, receita, despesa, saúde, educação.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-teresina-44",
@@ -1373,12 +1553,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Servidores, remuneração, receitas, despesas, contratos.",
+      "description": "Civil servants, pay, revenue, expenses, contracts.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Servidores, remuneração, receitas, despesas, contratos.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "portal-da-transparencia-rio-branco-45",
@@ -1403,12 +1588,17 @@
       "granularity": "transaction / supplier / servant",
       "coverage": "~2012-2017 -> present",
       "updateFrequency": "daily/frequent",
-      "description": "Obras, despesas, contratações, receitas, pessoal.",
+      "description": "Public works, expenses, hiring, revenue, personnel.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Several use third-party vendors (e.g. portaltp) - fragile for scraping.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Obras, despesas, contratações, receitas, pessoal.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "pncp-portal-nacional-de-contratacoes-publicas-46",
@@ -1417,8 +1607,8 @@
       "level": "Federal (all levels)",
       "location": "-",
       "domain": "Public procurement & contracts",
-      "url": "https://pncp.gov.br/",
-      "rawUrl": "https://pncp.gov.br/",
+      "url": "https://www.gov.br/pncp/pt-br",
+      "rawUrl": "https://www.gov.br/pncp/pt-br",
       "docs": "",
       "rawDocs": "normal portal link; API docs link removed after manual check",
       "accessMethod": "API (REST) + bulk download",
@@ -1435,7 +1625,7 @@
       "authRequired": "None",
       "limitations": "Municipal adoption still ramping; older contracts in Comprasnet. Manual browser check 2026-07-01: normal portal link works; Swagger API docs link removed.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "compras-gov-br-dados-abertos-47",
@@ -1463,7 +1653,7 @@
       "authRequired": "None",
       "limitations": "Legacy endpoints; migrating to PNCP. High-volume API throttled.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "painel-de-precos-48",
@@ -1490,7 +1680,7 @@
       "authRequired": "None",
       "limitations": "Discontinued for current benchmarking.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ibge-api-de-dados-agregados-sidra-49",
@@ -1518,7 +1708,7 @@
       "authRequired": "None",
       "limitations": "Need correct table (agregado) code; census-tract queries may be chunked.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ibge-apis-de-servicos-localidades-malhas-cnae-nomes-50",
@@ -1545,7 +1735,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ibge-cidades-panorama-51",
@@ -1572,7 +1762,7 @@
       "authRequired": "None",
       "limitations": "Presentation layer over SIDRA; use SIDRA/API for automation.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "seade-repositorio-municipios-populacao-sp-52",
@@ -1600,7 +1790,7 @@
       "authRequired": "None",
       "limitations": "SP-only; layouts vary by dataset.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ijsn-instituto-jones-dos-santos-neves-53",
@@ -1623,12 +1813,17 @@
       "granularity": "state / municipality (ES)",
       "coverage": "varies",
       "updateFrequency": "periodic",
-      "description": "ES analytical center: receitas, dengue, violence, conjuntura, regional indicators. Some data in Dados ES portal.",
+      "description": "ES analytical center: public revenue, dengue, violence, economic outlook, regional indicators. Some data in the Dados ES portal.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Split between own panels and Dados ES.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Centro de análise do ES: receitas públicas, dengue, violência, conjuntura, indicadores regionais. Parte dos dados fica no portal Dados ES.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "fundacao-joao-pinheiro-estatisticas-publicas-54",
@@ -1656,7 +1851,7 @@
       "authRequired": "None",
       "limitations": "Some stats rely on slow academic disclosure. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "sei-bahia-superintendencia-de-estudos-economicos-e-sociais-55",
@@ -1679,12 +1874,17 @@
       "granularity": "state / municipality / território",
       "coverage": "varies",
       "updateFrequency": "monthly/quarterly/annual",
-      "description": "Bahia statistical/economic output: conjuntura, PIB, mercado de trabalho, thematic publications.",
+      "description": "Bahia statistical/economic output: economic outlook, GDP, labor market, thematic publications.",
       "license": "Open",
       "authRequired": "None",
       "limitations": "Easier via publications/panels than raw datasets.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Produção estatística e econômica da Bahia: conjuntura, PIB, mercado de trabalho, publicações temáticas.",
+        "granularity": "estado / município / território de identidade",
+        "accessMethod": "web + publicações + painéis"
+      }
     },
     {
       "id": "ipardes-bdeweb-base-de-dados-do-estado-56",
@@ -1711,7 +1911,7 @@
       "authRequired": "None",
       "limitations": "Consolidated indicators, not transactional data.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "pdet-microdados-rais-caged-novo-caged-57",
@@ -1737,7 +1937,7 @@
       "authRequired": "None",
       "limitations": "FTP not browser-supported (use FileZilla); identified data needs sigilo agreement. Caged-old vs Novo Caged methodology break.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "bcb-sgs-series-temporais-58",
@@ -1746,10 +1946,10 @@
       "level": "Federal",
       "location": "-",
       "domain": "Money, banking, macro-financial series",
-      "url": "https://www3.bcb.gov.br/sgspub/",
-      "rawUrl": "https://www3.bcb.gov.br/sgspub/",
-      "docs": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json",
-      "rawDocs": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json",
+      "url": "https://www.bcb.gov.br/estatisticas/sgs",
+      "rawUrl": "https://www.bcb.gov.br/estatisticas/sgs",
+      "docs": "https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic",
+      "rawDocs": "https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic (API pattern: https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json)",
       "accessMethod": "API (REST) + web",
       "accessType": "Open API",
       "formats": [
@@ -1765,7 +1965,7 @@
       "authRequired": "None",
       "limitations": "Date range per call <=10y; need series codes.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "bcb-portal-de-dados-abertos-olinda-59",
@@ -1794,7 +1994,7 @@
       "authRequired": "None",
       "limitations": "Each service has own OData endpoint; check resource & license.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "cvm-dados-abertos-60",
@@ -1822,7 +2022,7 @@
       "authRequired": "None",
       "limitations": "Flat-file model; large files by theme directory.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "b3-cotacoes-historicas-market-data-61",
@@ -1849,7 +2049,7 @@
       "authRequired": "Varies",
       "limitations": "Most granular & real-time data paywalled.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "receita-federal-cnpj-dados-abertos-62",
@@ -1875,7 +2075,7 @@
       "authRequired": "None",
       "limitations": "20GB+; needs ETL/DB. No transactional API (use 3rd-party APIs). No graph API for beneficial ownership.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "receita-federal-dados-abertos-geral-63",
@@ -1902,7 +2102,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "mapa-de-empresas-64",
@@ -1929,7 +2129,7 @@
       "authRequired": "None",
       "limitations": "Analytical panel; for microdata use CNPJ/Juntas.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "juntas-comerciais-diretorio-drei-65",
@@ -1955,7 +2155,7 @@
       "authRequired": "None",
       "limitations": "Directory, not a registry DB; data fragmented across 27 juntas.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-jucesp-66",
@@ -1964,8 +2164,8 @@
       "level": "State",
       "location": "SP",
       "domain": "Business & company registry",
-      "url": "https://www.jucesp.sp.gov.br/",
-      "rawUrl": "https://www.jucesp.sp.gov.br/",
+      "url": "https://www.institucional.jucesp.sp.gov.br/",
+      "rawUrl": "https://www.institucional.jucesp.sp.gov.br/",
       "docs": "",
       "rawDocs": "service portal; mostly no open API",
       "accessMethod": "web query + digital services",
@@ -1982,7 +2182,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-juceac-67",
@@ -2009,7 +2209,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-jucap-68",
@@ -2036,7 +2236,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly. Manual browser check 2026-07-01: works.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-juceb-69",
@@ -2063,7 +2263,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-jucemg-70",
@@ -2090,7 +2290,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "junta-comercial-jucerja-71",
@@ -2117,7 +2317,7 @@
       "authRequired": "None for basic consult",
       "limitations": "Service-oriented; partner detail often paid; not bulk-friendly.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "comex-stat-72",
@@ -2144,7 +2344,7 @@
       "authRequired": "None",
       "limitations": "Municipality = firm's fiscal domicile, not production origin; bulk CSVs too large for spreadsheets. Manual browser check 2026-07-01: works.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "sefaz-pr-receita-tributaria-73",
@@ -2171,7 +2371,7 @@
       "authRequired": "None",
       "limitations": "Tax-label structural changes in 2024.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "incra-acervo-fundiario-sigef-snci-geo-74",
@@ -2180,8 +2380,8 @@
       "level": "Federal",
       "location": "-",
       "domain": "Land cadastre (georeferenced)",
-      "url": "https://acervofundiario.incra.gov.br/",
-      "rawUrl": "https://acervofundiario.incra.gov.br/",
+      "url": "https://sigef.incra.gov.br/",
+      "rawUrl": "https://sigef.incra.gov.br/",
       "docs": "",
       "rawDocs": "WMS/WFS (OGC) + SHP/KML export",
       "accessMethod": "WMS/WFS + SHP/KML download + i3Geo",
@@ -2200,7 +2400,7 @@
       "authRequired": "gov.br for some downloads",
       "limitations": "Servers unstable; some downloads now behind gov.br.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "sigef-sistema-de-gestao-fundiaria-75",
@@ -2229,7 +2429,7 @@
       "authRequired": "gov.br prata/ouro for full consult; cert for operation",
       "limitations": "Focus on certification, not all cadastres.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "sicar-car-cadastro-ambiental-rural-76",
@@ -2238,8 +2438,8 @@
       "level": "Federal",
       "location": "-",
       "domain": "Rural environmental registry",
-      "url": "https://www.car.gov.br/",
-      "rawUrl": "https://www.car.gov.br/",
+      "url": "https://www.gov.br/car/pt-br",
+      "rawUrl": "https://www.gov.br/car/pt-br",
       "docs": "",
       "rawDocs": "public consult + SHP per municipality/UF; Conecta API (gov-only OAuth)",
       "accessMethod": "web consult + SHP download (+ Conecta API for gov)",
@@ -2257,7 +2457,7 @@
       "authRequired": "Programmatic API: OAuth gov-only",
       "limitations": "Self-declared, overlaps common; raw bulk via download, not open API.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "sncr-sistema-nacional-de-cadastro-rural-api-77",
@@ -2284,7 +2484,7 @@
       "authRequired": "API keys + IP allowlist (Serpro)",
       "limitations": "Built for institutional integration.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "meu-imovel-rural-78",
@@ -2311,7 +2511,7 @@
       "authRequired": "gov.br login",
       "limitations": "Only logged-in owner's own properties.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "onr-registradores-cartorios-de-imoveis-79",
@@ -2320,10 +2520,10 @@
       "level": "Federal (notary network)",
       "location": "-",
       "domain": "Real estate registry (cartórios)",
-      "url": "https://www.registradores.onr.org.br/",
-      "rawUrl": "https://www.registradores.onr.org.br/",
-      "docs": "",
-      "rawDocs": "web services (SAEC)",
+      "url": "https://ridigital.org.br/",
+      "rawUrl": "https://ridigital.org.br/",
+      "docs": "https://www.onr.org.br/",
+      "rawDocs": "https://www.onr.org.br/ (SAEC web services)",
       "accessMethod": "web (paid per certidão) + integrations",
       "accessType": "Paid",
       "formats": [
@@ -2338,7 +2538,12 @@
       "authRequired": "Registration + payment",
       "limitations": "Fees apply; coverage depends on cartório participation. Manual browser check 2026-07-01: did not load.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Certidões de matrícula de imóveis, busca prévia e protocolo eletrônico nos cartórios de registro de imóveis participantes de todo o país.",
+        "granularity": "matrícula do imóvel",
+        "accessMethod": "web (pago por certidão) + integrações"
+      }
     },
     {
       "id": "mapa-dados-abertos-agrofit-sigsif-etc-80",
@@ -2365,7 +2570,7 @@
       "authRequired": "None",
       "limitations": "Spread across many subsystems.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "conab-informacoes-agropecuarias-81",
@@ -2374,10 +2579,10 @@
       "level": "Federal",
       "location": "-",
       "domain": "Crops / harvests / stocks / prices",
-      "url": "https://www.conab.gov.br/info-agro",
-      "rawUrl": "https://www.conab.gov.br/info-agro",
+      "url": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias",
+      "rawUrl": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias",
       "docs": "",
-      "rawDocs": "download + panels",
+      "rawDocs": "download + panels (Portal de Informações da Conab)",
       "accessMethod": "download + dashboards",
       "accessType": "Open",
       "formats": [
@@ -2393,7 +2598,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "cepea-esalq-usp-indicadores-de-precos-82",
@@ -2402,8 +2607,8 @@
       "level": "Federal (academic)",
       "location": "-",
       "domain": "Agribusiness price indicators",
-      "url": "https://www.cepea.esalq.usp.br/br",
-      "rawUrl": "https://www.cepea.esalq.usp.br/br",
+      "url": "https://www.cepea.org.br/br",
+      "rawUrl": "https://www.cepea.org.br/br",
       "docs": "",
       "rawDocs": "web series download",
       "accessMethod": "web download",
@@ -2420,7 +2625,7 @@
       "authRequired": "None",
       "limitations": "Not government; attribution required. Manual browser check 2026-07-01: works.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inpe-terrabrasilis-prodes-deter-83",
@@ -2449,7 +2654,7 @@
       "authRequired": "None",
       "limitations": "Attend to 'PRODES year' & per-program methodology.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inpe-programa-queimadas-bdqueimadas-84",
@@ -2477,7 +2682,12 @@
       "authRequired": "None",
       "limitations": "Satellite focus != confirmed surface fire.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Focos de queimada ativos e produtos de área queimada para o Brasil e a América Latina, em séries espaciais e temporais.",
+        "granularity": "foco de queimada / área queimada",
+        "accessMethod": ""
+      }
     },
     {
       "id": "mapbiomas-85",
@@ -2504,7 +2714,7 @@
       "authRequired": "None (GEE needs Google acct)",
       "limitations": "Classification not ground truth; NGO (not official).",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ana-snirh-hidroweb-86",
@@ -2531,7 +2741,7 @@
       "authRequired": "Free registration (some flows)",
       "limitations": "Station data needs consistency treatment.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inmet-bdmep-87",
@@ -2557,7 +2767,7 @@
       "authRequired": "Free registration (BDMEP)",
       "limitations": "Station metadata/standardization to check.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ibama-dados-abertos-embargos-autuacoes-88",
@@ -2584,7 +2794,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "geosgb-servico-geologico-do-brasil-89",
@@ -2621,10 +2831,10 @@
       "level": "Federal (all levels)",
       "location": "-",
       "domain": "Geospatial catalog",
-      "url": "https://www.inde.gov.br/",
-      "rawUrl": "https://www.inde.gov.br/",
-      "docs": "",
-      "rawDocs": "Visualizador + CSW/WMS/WFS",
+      "url": "https://inde.gov.br/",
+      "rawUrl": "https://inde.gov.br/",
+      "docs": "https://visualizador.inde.gov.br/",
+      "rawDocs": "https://visualizador.inde.gov.br/ + CSW/WMS/WFS",
       "accessMethod": "geoservices (OGC) + catalog",
       "accessType": "Open",
       "formats": [
@@ -2641,7 +2851,12 @@
       "authRequired": "None",
       "limitations": "Metadata quality varies.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Catálogo federado de camadas geoespaciais oficiais de dezenas de produtores (IBGE, INCRA, ANA, ICMBio); descoberta + serviços OGC.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "ibge-downloads-geociencias-malhas-geodesico-91",
@@ -2670,7 +2885,7 @@
       "authRequired": "None",
       "limitations": "Watch boundary changes for temporal comparability.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "geoportal-ide-bahia-92",
@@ -2698,7 +2913,7 @@
       "authRequired": "None",
       "limitations": "Catalog/service; extraction depends on associated service.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "geosampa-93",
@@ -2727,7 +2942,7 @@
       "authRequired": "None",
       "limitations": "- Manual browser check 2026-07-01: works.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "bhmap-geoserver-94",
@@ -2754,7 +2969,7 @@
       "authRequired": "None",
       "limitations": "Best via QGIS/ArcGIS for full vectors.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "geoweb-vitoria-95",
@@ -2781,7 +2996,7 @@
       "authRequired": "None",
       "limitations": "Not all layers directly downloadable from home.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "datasus-tabnet-96",
@@ -2808,7 +3023,7 @@
       "authRequired": "None",
       "limitations": "Legacy DBC format; TabNet UI dated; PySUS eases access.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "datasus-transferencia-de-arquivos-97",
@@ -2835,34 +3050,45 @@
       "authRequired": "None",
       "limitations": "Legacy formats need conversion.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Arquivos históricos brutos do SIM, SINASC, SIH, CNES etc., para ETL robusto.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
-      "id": "datasus-ftp-s3-mirror-community-98",
-      "name": "DATASUS - FTP S3 Mirror (community)",
-      "agency": "Community (e.g. Fiocruz/microdatasus)",
+      "id": "datasus-microdatasus-pysus-community-98",
+      "name": "DATASUS - microdatasus / PySUS (community)",
+      "agency": "Community (Fiocruz researchers / AlertaDengue)",
       "level": "Federal",
       "location": "-",
-      "domain": "Health (fast mirror)",
-      "url": "",
-      "rawUrl": "various S3 mirrors (e.g. via microdatasus R pkg)",
-      "docs": "",
-      "rawDocs": "R microdatasus / PySUS",
-      "accessMethod": "S3 sync + bulk download",
+      "domain": "Health (community tooling)",
+      "url": "https://github.com/rfsaldanha/microdatasus",
+      "rawUrl": "https://github.com/rfsaldanha/microdatasus",
+      "docs": "https://pysus.readthedocs.io/",
+      "rawDocs": "https://pysus.readthedocs.io/ (PySUS, Python)",
+      "accessMethod": "R / Python packages that download DATASUS FTP files",
       "accessType": "Open",
       "formats": [
         "DBC",
-        "CSV"
+        "data frames",
+        "Parquet"
       ],
-      "granularity": "hospital / patient / individual",
-      "coverage": "1990 -> present",
-      "updateFrequency": "daily",
-      "description": "High-speed mirror of SIM/SINASC/SIH/CNES with parallel sync & transaction logs.",
-      "license": "Public domain",
+      "granularity": "record (de-identified) / establishment / municipality",
+      "coverage": "follows DATASUS (1979+ for SIM)",
+      "updateFrequency": "follows DATASUS FTP",
+      "description": "Community packages that download DATASUS FTP files (SIM, SINASC, SIH, SIA, CNES, SINAN) and decode DBC into ready-to-use tables.",
+      "license": "Open source (PySUS GPL-3.0); data public",
       "authRequired": "None",
-      "limitations": "Community-maintained (not official); needs DBC parsers.",
+      "limitations": "Community-maintained, not official; speed and uptime depend on the DATASUS FTP.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Pacotes comunitários que baixam os arquivos do FTP do DATASUS (SIM, SINASC, SIH, SIA, CNES, SINAN) e convertem DBC em tabelas prontas para uso.",
+        "granularity": "registro (desidentificado) / estabelecimento / município",
+        "accessMethod": "pacotes R / Python que baixam o FTP do DATASUS"
+      }
     },
     {
       "id": "cnes-estabelecimentos-de-saude-99",
@@ -2890,7 +3116,7 @@
       "authRequired": "None",
       "limitations": "Name/unit normalization needed; known cadastral inconsistencies.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "datasus-api-dados-abertos-100",
@@ -2916,7 +3142,7 @@
       "authRequired": "None",
       "limitations": "Coverage narrower than full DATASUS.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ans-dados-abertos-saude-suplementar-101",
@@ -2943,7 +3169,7 @@
       "authRequired": "None",
       "limitations": "Personal microdata not public.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "anvisa-dados-abertos-102",
@@ -2970,7 +3196,12 @@
       "authRequired": "None",
       "limitations": "- Manual browser check 2026-07-01: works.",
       "relevance": "Healthcare",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Medicamentos, cosméticos e alimentos registrados, preços de medicamentos (CMED), eventos adversos, autorizações de estabelecimentos, importações.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "inep-microdados-hub-103",
@@ -2998,7 +3229,7 @@
       "authRequired": "None",
       "limitations": "Anonymization limits some individual cross-joins; large files.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inep-censo-escolar-microdados-104",
@@ -3026,7 +3257,7 @@
       "authRequired": "None",
       "limitations": "Variables change over time; check annual layouts.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inep-enem-censo-ed-superior-ideb-105",
@@ -3054,7 +3285,7 @@
       "authRequired": "None",
       "limitations": "Recent ENEM simplified for data protection.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "capes-dados-abertos-catalogo-de-teses-106",
@@ -3082,7 +3313,7 @@
       "authRequired": "None",
       "limitations": "Very heterogeneous across datasets. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "cnj-datajud-api-publica-107",
@@ -3108,7 +3339,7 @@
       "authRequired": "Public API key (published)",
       "limitations": "Per-tribunal endpoints; metadata only; bulk raw-event consumption limited.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "cnj-justica-em-numeros-108",
@@ -3136,7 +3367,7 @@
       "authRequired": "None",
       "limitations": "Aggregate; for case-level use DataJud.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "stf-jurisprudencia-corte-aberta-109",
@@ -3163,7 +3394,7 @@
       "authRequired": "None",
       "limitations": "Research-oriented; not bulk structured download. Manual browser check 2026-07-01: works.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "stj-portal-de-dados-abertos-110",
@@ -3191,7 +3422,12 @@
       "authRequired": "None",
       "limitations": "Check per-dataset docs; not all full history.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Processos em tramitação, íntegras e metadados de decisões terminativas e acórdãos, além de bases jurisdicionais e administrativas.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "lexml-planalto-legislacao-111",
@@ -3218,7 +3454,12 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Leis, decretos e atos normativos federais (e alguns estaduais), com metadados e texto integral; busca estruturada no LexML.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "tse-portal-de-dados-abertos-112",
@@ -3246,7 +3487,7 @@
       "authRequired": "None",
       "limitations": "Large per-election files; migrated from old RDE in 2022.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "camara-dos-deputados-dados-abertos-api-113",
@@ -3273,7 +3514,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "senado-federal-dados-abertos-api-114",
@@ -3300,7 +3541,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "mds-vis-data-3-cadastro-unico-bolsa-familia-115",
@@ -3325,7 +3566,7 @@
       "description": "Cadastro Único coverage, Bolsa Família/BPC/Auxílio beneficiaries & values by municipality, SUAS network, poverty indicators.",
       "license": "Open (aggregate); LGPD for individual",
       "authRequired": "None for aggregate; token for some APIs",
-      "limitations": "Individual-level CadÚnico protected; only aggregates open.",
+      "limitations": "Individual-level CadÚnico protected; only aggregates open. Offline for security maintenance since late Oct 2026 (redirects to an MDS notice).",
       "relevance": "Market-entry/Demographics",
       "lastVerified": "2026-06-25"
     },
@@ -3354,7 +3595,7 @@
       "authRequired": "None",
       "limitations": "Aggregate; identified extraction needs authorization.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "aneel-dados-abertos-117",
@@ -3384,7 +3625,7 @@
       "authRequired": "None",
       "limitations": "Excellent but spread across many specialized datasets; SIGEL layers occasionally offline.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "anp-dados-abertos-cdp-118",
@@ -3412,7 +3653,12 @@
       "authRequired": "None",
       "limitations": "New CDP portal (replacing legacy CPL) uses dynamic session tags; catalog spread across themes.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Levantamento semanal de preços de combustíveis por posto e município, produção de petróleo e gás por campo, reservas, vendas de derivados, biocombustíveis, E&P, incidentes.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "epe-webmap-balanco-energetico-ons-119",
@@ -3440,7 +3686,7 @@
       "authRequired": "None",
       "limitations": "-",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "anac-dados-abertos-datasearch-120",
@@ -3468,7 +3714,7 @@
       "authRequired": "None",
       "limitations": "Some catalog needs thematic navigation; DSL query engine can be slow.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "antt-dados-abertos-monitriip-121",
@@ -3524,7 +3770,7 @@
       "authRequired": "None",
       "limitations": "Web/panel fragile; automation may need scraping. Manual browser check 2026-07-01: did not load.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dnit-condicao-de-rodovias-icm-123",
@@ -3551,7 +3797,7 @@
       "authRequired": "None",
       "limitations": "Spatial coords occasionally misaligned with regional cartography.",
       "relevance": "Agro/Land",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "anatel-dados-abertos-mosaico-124",
@@ -3578,7 +3824,7 @@
       "authRequired": "None",
       "limitations": "Offer dispersed across 'Dados', 'Painéis' & 'Dados Abertos'.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "inpi-dados-abertos-busca-pepi-125",
@@ -3606,7 +3852,7 @@
       "authRequired": "None for anonymous search",
       "limitations": "Bulk open data limited & expanding; coverage caveats on older acervo.",
       "relevance": "SME/fintech",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "cnpq-painel-lattes-plataforma-lattes-126",
@@ -3633,7 +3879,12 @@
       "authRequired": "None",
       "limitations": "No clean bulk API; scraping constraints.",
       "relevance": "General/Infra",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Currículos de pesquisadores (Lattes), painéis agregados por área, região e instituição; diretório de grupos de pesquisa.",
+        "granularity": "pesquisador / instituição",
+        "accessMethod": "web + XML do currículo"
+      }
     },
     {
       "id": "mjsp-sinesp-estatisticas-de-seguranca-publica-127",
@@ -3642,10 +3893,10 @@
       "level": "Federal",
       "location": "-",
       "domain": "Public security & crime",
-      "url": "https://dados.mj.gov.br/dataset/sistema-nacional-de-estatisticas-de-seguranca-publica",
-      "rawUrl": "https://dados.mj.gov.br/dataset/sistema-nacional-de-estatisticas-de-seguranca-publica",
-      "docs": "",
-      "rawDocs": "dados.mj.gov.br catalog",
+      "url": "https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica",
+      "rawUrl": "https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica",
+      "docs": "https://dados.gov.br/dados/conjuntos-dados/sistema-nacional-de-estatisticas-de-seguranca-publica",
+      "rawDocs": "https://dados.gov.br/dados/conjuntos-dados/sistema-nacional-de-estatisticas-de-seguranca-publica",
       "accessMethod": "download",
       "accessType": "Open",
       "formats": [
@@ -3659,7 +3910,12 @@
       "authRequired": "None",
       "limitations": "State reporting heterogeneity; comparability depends on standardization.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Homicídios, roubos, roubo e furto de veículos, violência de gênero, apreensões de armas, população carcerária, por estado e município.",
+        "granularity": "UF / município (agregado) / tipo de crime",
+        "accessMethod": ""
+      }
     },
     {
       "id": "ssp-sp-estatisticas-de-criminalidade-128",
@@ -3686,7 +3942,12 @@
       "authRequired": "None",
       "limitations": "No API; historical data split across pages.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Dados mensais de crimes contra a vida e o patrimônio, violência sexual, infrações de drogas e produtividade policial (SP).",
+        "granularity": "delegacia / município",
+        "accessMethod": ""
+      }
     },
     {
       "id": "forum-brasileiro-de-seguranca-publica-anuario-129",
@@ -3713,7 +3974,7 @@
       "authRequired": "None",
       "limitations": "NGO compilation, not official.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "ministerio-do-turismo-estatisticas-e-indicadores-130",
@@ -3740,7 +4001,12 @@
       "authRequired": "None",
       "limitations": "Aggregates panels/sources; not all downloadable microdata.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Chegadas de turistas, receita e despesa cambial do turismo, financiamentos e indicadores do Brasil e do exterior.",
+        "granularity": "Brasil / UF / fluxos turísticos",
+        "accessMethod": ""
+      }
     },
     {
       "id": "ministerio-da-cultura-painel-pnab-aldir-blanc-131",
@@ -3749,8 +4015,8 @@
       "level": "Federal",
       "location": "-",
       "domain": "Culture",
-      "url": "https://www.gov.br/cultura/pt-br/assuntos/politica-nacional-aldir-blanc/painel-de-dados",
-      "rawUrl": "https://www.gov.br/cultura/pt-br/assuntos/politica-nacional-aldir-blanc/painel-de-dados",
+      "url": "https://www.gov.br/cultura/pt-br/assuntos/programas-acoes-e-atividades/politica-nacional-aldir-blanc",
+      "rawUrl": "https://www.gov.br/cultura/pt-br/assuntos/programas-acoes-e-atividades/politica-nacional-aldir-blanc",
       "docs": "",
       "rawDocs": "no documented API",
       "accessMethod": "web panel",
@@ -3766,7 +4032,7 @@
       "authRequired": "None",
       "limitations": "Program-specific; not a general culture catalog.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dados-abertos-sp-132",
@@ -3794,7 +4060,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "portal-de-dados-abertos-da-bahia-133",
@@ -3822,7 +4088,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org. Manual browser check 2026-07-01: works.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dados-es-134",
@@ -3850,7 +4116,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "CKAN/API estadual: bases sociais, econômicas e administrativas; recebe dados do IJSN.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "dados-abertos-do-parana-135",
@@ -3878,7 +4149,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Portal estadual baseado no BDEweb: PIB, IDH, IPDM, população, emprego, agro, finanças.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "dados-rs-136",
@@ -3906,7 +4182,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Market-entry/Demographics",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Portal estadual de dados abertos para reuso social; a qualidade varia conforme o órgão.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "dados-abertos-da-prefeitura-de-sao-paulo-137",
@@ -3934,7 +4215,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "data-rio-datalake-rio-138",
@@ -3962,7 +4243,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Dados urbanos, geográficos, sociais e operacionais da cidade; integração com o datalake municipal.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "dados-abertos-do-recife-139",
@@ -3990,7 +4276,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dados-abertos-da-pbh-140",
@@ -4018,7 +4304,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "CKAN: grande variedade de bases urbanas e administrativas.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "fortaleza-dados-abertos-141",
@@ -4046,7 +4337,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dados-abertos-curitiba-142",
@@ -4074,7 +4365,7 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org. Link check 2026-07-01: automated checker returned 403/timeout/fetch error; manual browser verification recommended before production use.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15"
     },
     {
       "id": "dados-abertos-porto-alegre-143",
@@ -4102,7 +4393,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "Bases de governo aberto sobre a cidade e a administração.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     },
     {
       "id": "dados-abertos-pmv-vitoria-144",
@@ -4130,7 +4426,12 @@
       "authRequired": "None",
       "limitations": "Coverage/maturity varies by publishing org.",
       "relevance": "Local-SMB",
-      "lastVerified": "2026-06-25"
+      "lastVerified": "2026-11-15",
+      "pt": {
+        "description": "API municipal de dados abertos (JSON) com documentação; combine com o Geoweb e o portal da transparência.",
+        "granularity": "",
+        "accessMethod": ""
+      }
     }
   ]
 }
