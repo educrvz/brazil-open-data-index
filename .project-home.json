@@ -1,0 +1,9 @@
+{
+  "slug": "brazil-open-data-index",
+  "name": "Brazil Open Data Index",
+  "repo": "dccrvz/brazil-open-data-index",
+  "registry": "https://github.com/dccrvz/project-kit/blob/main/projects.json",
+  "vault": "none (no secrets)",
+  "home_since": "2026-11-15",
+  "notion_url": "https://app.notion.com/p/41aeeae1044a81518b0bfe8f8acf767a"
+}

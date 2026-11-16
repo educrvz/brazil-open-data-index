@@ -1,0 +1,128 @@
+# Tells Notion when this repo was pushed and deployed, so the project's row in the Notion
+# Projects database stays current with no human step (project-kit, ADR "GitHub owns tech
+# facts, Notion owns the human layer"). It only writes Last push / Last pushed by /
+# Last commit / Last deploy; it never touches status, priority, notes or open items.
+#
+# Needs the NOTION_TOKEN secret (org secret in dccrvz, or repo secret). Without it the job
+# prints what it would write and passes, so it never blocks anyone's push.
+#
+# "Last deploy" comes from one of three signals; keep the ones that match how this repo deploys:
+#   - deployment_status: hosts that report GitHub deployments (Vercel, Netlify, ...).
+#   - workflow_run: a deploy job in this repo's own CI (set DEPLOY_WORKFLOW / DEPLOY_JOB).
+#   - PUSH_IS_DEPLOY_BRANCHES: hosts that auto-deploy a branch on push but report nothing
+#     back to GitHub (e.g. Cloudflare Pages); a push there counts as a deploy.
+name: notion-signal
+on:
+  push:
+    branches: [main]
+  deployment_status:
+  # workflow_run:
+  #   workflows: [check]          # name of the workflow that deploys
+  #   types: [completed]
+  #   branches: [main]
+
+permissions:
+  actions: read       # read the deploy job's result on workflow_run
+  contents: read
+
+concurrency:
+  group: notion-signal
+  cancel-in-progress: false
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Update the project's Notion row
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT_SLUG: "brazil-open-data-index"
+          NOTION_DATA_SOURCE: 67aaefb2-fee3-4459-92ec-fedd414928cc   # Notion "Projects" (an ID, not a secret)
+          PUSH_IS_DEPLOY_BRANCHES: ""      # e.g. "main" when the host auto-deploys main silently
+          DEPLOY_JOB: deploy               # job name inside DEPLOY_WORKFLOW (workflow_run only)
+        run: |
+          python3 - <<'PY'
+          # notion-signal:start
+          import json, os, sys, urllib.request, urllib.error
+
+          E = os.environ
+          ev_name = E.get("GITHUB_EVENT_NAME", "")
+          ev = json.load(open(E["GITHUB_EVENT_PATH"], encoding="utf-8"))
+          repo = E.get("GITHUB_REPOSITORY", "")
+          server = E.get("GITHUB_SERVER_URL", "https://github.com")
+          deploy_branches = {b.strip() for b in E.get("PUSH_IS_DEPLOY_BRANCHES", "").split(",") if b.strip()}
+
+          def text(s):
+              return {"rich_text": [{"type": "text", "text": {"content": s[:2000]}}]}
+
+          props = {}
+          if ev_name == "push":
+              head = ev.get("head_commit")
+              if not head:
+                  print("push without a head commit (branch delete?); nothing to do"); sys.exit(0)
+              who = ev.get("sender", {}).get("login") or ev.get("pusher", {}).get("name") or "?"
+              author = head.get("author", {}).get("name")
+              if author and author != who:
+                  who = f"{who} (commit by {author})"
+              props["Last push"] = {"date": {"start": head["timestamp"]}}
+              props["Last pushed by"] = text(who)
+              props["Last commit"] = {"url": head.get("url") or f"{server}/{repo}/commit/{head['id']}"}
+              branch = ev.get("ref", "").removeprefix("refs/heads/")
+              if branch in deploy_branches:
+                  props["Last deploy"] = {"date": {"start": head["timestamp"]}}
+          elif ev_name == "deployment_status":
+              st, dep = ev.get("deployment_status", {}), ev.get("deployment", {})
+              env = (dep.get("environment") or "").lower()
+              if st.get("state") != "success" or "prod" not in env:
+                  print(f"deployment_status {st.get('state')} for '{env}'; not a production deploy"); sys.exit(0)
+              props["Last deploy"] = {"date": {"start": st.get("created_at") or dep.get("created_at")}}
+          elif ev_name == "workflow_run":
+              run = ev.get("workflow_run", {})
+              if run.get("conclusion") != "success":
+                  print(f"workflow_run concluded {run.get('conclusion')}; no deploy"); sys.exit(0)
+              req = urllib.request.Request(run["jobs_url"], headers={
+                  "Authorization": f"Bearer {E.get('GITHUB_TOKEN', '')}", "Accept": "application/vnd.github+json"})
+              jobs = json.load(urllib.request.urlopen(req, timeout=20)).get("jobs", [])
+              job = next((j for j in jobs if j.get("name") == E.get("DEPLOY_JOB", "deploy")), None)
+              deployed = job and job.get("conclusion") == "success" and any(
+                  "deploy" in (s.get("name") or "").lower() and s.get("conclusion") == "success"
+                  for s in job.get("steps", []))
+              if not deployed:
+                  print("deploy job did not run a deploy step (skipped or no token); no deploy"); sys.exit(0)
+              props["Last deploy"] = {"date": {"start": job.get("completed_at") or run.get("updated_at")}}
+          else:
+              print(f"event {ev_name} not handled"); sys.exit(0)
+
+          print("Would set:" if not E.get("NOTION_TOKEN") else "Setting:", json.dumps(props, indent=1))
+          if not E.get("NOTION_TOKEN"):
+              print("::notice::NOTION_TOKEN secret not set; Notion not updated"); sys.exit(0)
+
+          def notion(method, path, body=None):
+              req = urllib.request.Request(
+                  E.get("NOTION_API", "https://api.notion.com/v1") + path, method=method,
+                  data=json.dumps(body).encode() if body is not None else None,
+                  headers={"Authorization": f"Bearer {E['NOTION_TOKEN']}", "Notion-Version": "2025-09-03",
+                           "Content-Type": "application/json"})
+              try:
+                  return json.load(urllib.request.urlopen(req, timeout=20))
+              except urllib.error.HTTPError as e:
+                  print(f"::error::Notion {method} {path} → {e.code}: {e.read().decode()[:500]}"); sys.exit(1)
+
+          ds = E["NOTION_DATA_SOURCE"]
+          filters = [{"property": "GitHub repo", "url": {"equals": f"{server}/{repo}"}}]
+          slug = E.get("PROJECT_SLUG", "")
+          if slug and not slug.startswith("{{"):
+              filters.append({"property": "Slug", "rich_text": {"equals": slug}})
+          rows = notion("POST", f"/data_sources/{ds}/query", {"filter": {"or": filters}, "page_size": 5})["results"]
+          if not rows:
+              print(f"::warning::No Notion Projects row with GitHub repo {server}/{repo} or Slug '{slug}'. "
+                    "Register the project in project-kit (projects.json) so the registry sync creates it.")
+              sys.exit(0)
+          if len(rows) > 1:
+              print(f"::warning::{len(rows)} Notion rows match; updating the first ({rows[0]['url']})")
+          notion("PATCH", f"/pages/{rows[0]['id']}", {"properties": props})
+          print(f"Updated {rows[0]['url']}")
+          # notion-signal:end
+          PY

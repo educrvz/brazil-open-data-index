@@ -1,0 +1,34 @@
+# Runs the same pre-deploy check as ./scripts/check.sh on every push and pull request.
+# Deploys must only happen after this passes (see docs/RUNBOOK.md → Deploy).
+name: check
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        if: hashFiles('package.json') != ''
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        if: hashFiles('pyproject.toml', 'requirements.txt') != ''
+        with:
+          python-version: "3.12"
+      - run: bash scripts/check.sh
+
+  # Optional: deploy from CI only after the check passes. Fill in and uncomment.
+  # deploy:
+  #   needs: check
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - run: echo "deploy command here"   # secrets come from repo Settings → Secrets
+  #       env:
+  #         EXAMPLE_TOKEN: ${{ secrets.EXAMPLE_TOKEN }}
