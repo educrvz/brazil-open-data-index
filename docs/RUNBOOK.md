@@ -65,6 +65,8 @@ The app has no secrets (`.env.example` is empty on purpose). CI has one.
 |---|---|---|---|
 | `NOTION_TOKEN` (GitHub Actions secret, not in `.env`) | Notion internal integration "project-kit sync" token; lets `notion-signal` write Last push / Last commit / Last deploy to the Projects row | Repo → Settings → Secrets → Actions (set with `gh secret set NOTION_TOKEN -R educrvz/brazil-open-data-index`) | Edu's Notion (integration page) |
 
+Set 2026-11-17. Scope: Read + update + insert content; no comments, **no user info**; content access = the 🎯 Projects database only (checked 2026-11-17). Notion tokens cannot expire: **rotate by 2027-02-15**. Renew: Notion → Settings → Developer → Open developer tools → Developer connections → project-kit sync → Refresh API token → copy → `for r in educrvz/ilha-do-sul-inteligencia educrvz/brazil-open-data-index dccrvz/support-agent dccrvz/project-kit; do pbpaste \| gh secret set NOTION_TOKEN -R $r; done` (one token, four repos).
+
 Without `NOTION_TOKEN` the `notion-signal` job passes but only prints "NOTION_TOKEN secret not set; Notion not updated".
 
 ## Common issues
