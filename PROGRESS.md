@@ -3,6 +3,14 @@
 Dated log of every change, newest first. Each entry says what changed, why, which checks
 ran, whether it was deployed, and what is still open. Format: see `AGENTS.md`.
 
+## 2026-11-19 — Fix high Dependabot alerts (Edu + Claude Code)
+
+Bumped `vite` to ^7.3.7 and refreshed the lockfile so `source-map-js`, `browserslist`,
+`nanoid` and `postcss` resolve to patched versions; added an npm `overrides` entry for
+`zod` (^4.6.6), which arrives transitively via `@vercel/functions` → `@vercel/oidc`.
+Why: 8 high alerts open since 16/11. Checks: `npm run build` PASS; `npm ls` shows patched
+versions. Deployed: on merge (Vercel). Open: 5 medium + 1 low alerts not addressed here.
+
 ## 2026-11-15 — GoatCounter analytics; NOTION_TOKEN documented (Edu + Claude Code)
 
 Added GoatCounter (cookieless, aggregate) to `index.html` with site code
